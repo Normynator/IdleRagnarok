@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import * as counterActions from "../actions/counterActions"
 import Headline from "../components/Headline"
 import NavBar from "../components/NavBar"
+import BasicExample from "../components/BasicExample"
 
 const styles = {
   button: {
@@ -18,6 +19,7 @@ const styles = {
 
 @connect(state => ({
   counters: state.counters,
+    router: state.router,
 }))
 
 @Radium
@@ -39,6 +41,7 @@ export default class App1Container extends React.Component {
             <Headline>Hi Till</Headline>
             <div style={styles.button} onClick={() => this.handleClick()}>INCREASE</div>
             <p style={styles.counter}>{counters.clicks}</p>
+           <BasicExample/>
             <p>{process.env.BASE_API_URL}</p>
           </div>
         </div>
