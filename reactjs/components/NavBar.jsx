@@ -1,14 +1,14 @@
 import React from "react"
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
-import {Link} from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 export default class NavBar extends React.Component {
   render() {
     return (
-      <Navbar>
+      <Navbar>     
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">React-Bootstrap</a>
+            <Link to="/">IdleRagnarok</Link>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
@@ -16,11 +16,11 @@ export default class NavBar extends React.Component {
             <Link to="/about">About</Link>
           </NavItem>
           <NavItem eventKey={2} href="#">
-            <Link to="/topics">Topics</Link>
+            <Link to="/chars">Chars</Link>
           </NavItem>
           <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
             <MenuItem eventKey={3.1}>
-              <Link to="/topics">Topics</Link>
+              <Link to="/acc_info">Account Info</Link>
             </MenuItem>
             <MenuItem eventKey={3.2}>Another action</MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>

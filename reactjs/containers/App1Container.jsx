@@ -7,41 +7,32 @@ import Headline from "../components/Headline"
 import NavBar from "../components/NavBar"
 import BasicExample from "../components/BasicExample"
 
-const styles = {
-  button: {
-    cursor: "pointer",
-  },
-  counter: {
-    color: "blue",
-    fontSize: "20px",
-  }
-}
+import AccountInfo from "./AccountInfo"
+import Home from "./Home"
+import About from "./About"
+import Chars from "./Chars"
+
+import { Route } from "react-router-dom";
 
 @connect(state => ({
-  counters: state.counters,
-    router: state.router,
-}))
+  router: state.router,
+}))  
 
 @Radium
 export default class App1Container extends React.Component {
-  handleClick() {
-    let {dispatch} = this.props;
-    dispatch(counterActions.increaseCounter())
-  }
 
   render() {
-    let {counters} = this.props
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
             <NavBar/>
-            <Headline>Something Fancy!!</Headline>
-            <Headline>Test text</Headline>
-            <Headline>Hi Till</Headline>
-            <div style={styles.button} onClick={() => this.handleClick()}>INCREASE</div>
-            <p style={styles.counter}>{counters.clicks}</p>
-           <BasicExample/>
+            
+            <Route exact path="/" component={Home} />               
+            <Route path="/acc_info" component={AccountInfo} />
+            <Route path="/about" component={About} />
+            <Route path="/chars" component={Chars} />
+
             <p>{process.env.BASE_API_URL}</p>
           </div>
         </div>
