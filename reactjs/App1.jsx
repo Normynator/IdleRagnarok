@@ -3,7 +3,6 @@ import { render } from "react-dom"
 import store, { history } from './store';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from "react-redux"
-import { Route } from "react-router-dom";
 import App1Container from "./containers/App1Container"
 
 class App1 extends React.Component {

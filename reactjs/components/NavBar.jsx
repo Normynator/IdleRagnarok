@@ -13,7 +13,7 @@ export default class NavBar extends React.Component {
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1} href="#">
-            <Link to="/about">About</Link>
+            <Link to="/mission">Mission</Link>
           </NavItem>
           <NavItem eventKey={2} href="#">
             <Link to="/chars">Chars</Link>
@@ -22,7 +22,9 @@ export default class NavBar extends React.Component {
             <MenuItem eventKey={3.1}>
               <Link to="/acc_info">Account Info</Link>
             </MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
+            <MenuItem eventKey={3.2}>
+                <Link to="/about">About</Link>
+            </MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>

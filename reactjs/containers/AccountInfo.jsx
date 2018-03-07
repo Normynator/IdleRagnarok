@@ -1,6 +1,6 @@
 import React from "react";
 import Headline from "../components/Headline"
-import {Table} from "react-bootstrap";
+import {Button, Col, Grid, Label, Row, Table} from "react-bootstrap";
 
 
 export default class AccountInfo extends React.Component {
@@ -9,39 +9,46 @@ export default class AccountInfo extends React.Component {
         <div>
             <Headline>Account Info</Headline>
             <hr/>
-
-            <p>This is a Placeholder</p>
+            <h4>
+                Mail: <Label>Test@mail.com</Label>
+            </h4>
             <Table striped bordered condensed hover>
-               <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-               </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>E-Mail</td>
+                        <td>test@test-mail.com</td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>Account Name</td>
+                        <td>Normynator</td>
                     </tr>
                     <tr>
-                        <td>3</td>
-                        <td colSpan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                        <td>Account ID</td>
+                        <td>8977665365</td>
+                    </tr>
+                    <tr>
+                        <td>Zeny</td>
+                        <td>99999999</td>
+                    </tr>
+                    <tr>
+                        <td>Chars on Account</td>
+                        <td>9</td>
                     </tr>
                 </tbody>
             </Table>
-            <p>This is a Placeholder</p>
-
+            <Grid>
+                <Row>
+                    <Col xs={6} md={2}>
+                        <Button bsStyle="danger" bsSize="large">Delete Account</Button>
+                    </Col>
+                    <Col xs={6} md={2}>
+                        <Button bsStyle="warning" bsSize="large">Change Password</Button>
+                    </Col>
+                    <Col xs={6} mdPush={6}>
+                        <Button bsStyle="primary" bsSize="large">Change Mail</Button>
+                    </Col>
+                </Row>
+            </Grid>
             <hr/>
         </div>
       )
