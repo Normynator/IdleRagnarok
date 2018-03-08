@@ -1,1 +1,8 @@
-export { default as counters } from './counters'
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import counters from './counters';
+
+export default combineReducers({
+  router: routerReducer,
+  counters
+});
