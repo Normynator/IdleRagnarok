@@ -29,13 +29,13 @@ export default class App1Container extends React.Component {
           <div className="col-sm-12">
             <NavBar/>
             
-            <Route exact path="/"           component={Home} />
-            <Route path="/acc_info"         component={AccountInfo} />
-            <Route path="/about"            component={About} />
-            <Route path="/chars"            component={Chars} />
-            <Route path="/mission"          component={Mission} />
-            <Route path="/mission_list"     component={MissionList} />
-            <Route path="/map"              component={Map} />
+            <Route exact path="/"               component={Home} />
+            <Route path="/acc_info"             component={AccountInfo} />
+            <Route path="/about"                component={About} />
+            <Route path="/chars"                component={Chars}/>
+            <Route path="/mission"              component={Mission} />
+            <Route path="/mission_list"         component={MissionList} />
+            <Route path="/map"                  component={Map} />
             <Route path="/dungeon/:dungeonName" component={DungeonList}/>
 
             <p>{process.env.BASE_API_URL}</p>
