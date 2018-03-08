@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', generic.TemplateView.as_view(template_name='api_test.html')),
     re_path(r'^', generic.TemplateView.as_view(template_name='view.html')),
-    path('info/', generic.TemplateView.as_view(template_name='info.html')),
+    #path('info/', generic.TemplateView.as_view(template_name='info.html')),
     #re_path(r'^info/$', generic.TemplateView.as_view(template_name='info.html')),
 
 ]
