@@ -2,8 +2,8 @@ import React from "react";
 import Headline from "../components/Headline"
 import {
     Button, Col, Grid, Image, Label, OverlayTrigger, Popover, ProgressBar, Row, Table, Thumbnail,
-    Tooltip
 } from "react-bootstrap";
+
 
 const popoverHoverFocus = (
   <Popover id="popover-trigger-hover-focus" title="Popover bottom">
@@ -12,11 +12,17 @@ const popoverHoverFocus = (
 );
 
 export default class Mission extends React.Component {
+
     render() {
       return (
         <div>
-           <Headline>Missions</Headline>
             <Grid>
+                <Row>
+                    <Col  xs={6} md={12}>
+                        <Headline>Current Mission</Headline>
+                        <hr/>
+                    </Col>
+                </Row>
                 <Row>
                     <Col xs={6} md={4}>
                         <Grid>
@@ -66,7 +72,7 @@ export default class Mission extends React.Component {
                     </Col>
                     <Col xsHidden md={4}>
                         <br/>
-                        <Thumbnail alt="171x180" src="/static/images/battle.png" rounded />
+                        <Thumbnail alt="171x180" src="/static/images/battle.png" />
                     </Col>
 
                     <Col xs={6} md={4}>
@@ -139,7 +145,7 @@ export default class Mission extends React.Component {
                     <Col xs={10} md={10}>
                         <ProgressBar active striped bsStyle="success" now={80} label={'3:30'} />
                     </Col>
-                    <Col xs={1} md={1}>
+                    <Col xs={2} md={2}>
                         <Button bsStyle="warning" bsSize="small">Cancle Mission</Button>
                     </Col>
                 </Row>

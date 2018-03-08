@@ -13,22 +13,27 @@ export default class NavBar extends React.Component {
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1} href="#">
-            <Link to="/mission">Mission</Link>
+            <Link to="/acc_info">Account Info</Link>
           </NavItem>
           <NavItem eventKey={2} href="#">
             <Link to="/chars">Chars</Link>
           </NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+          <NavDropdown eventKey={3} title="Mission" id="basic-nav-dropdown">
             <MenuItem eventKey={3.1}>
-              <Link to="/acc_info">Account Info</Link>
+              <Link to="/mission">Ongoing Mission</Link>
             </MenuItem>
             <MenuItem eventKey={3.2}>
-                <Link to="/about">About</Link>
+                <Link to="/mission_list">Missions</Link>
             </MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
+            <MenuItem eventKey={3.3}>Levels</MenuItem>
             <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
+            <MenuItem eventKey={3.4}>
+                <Link to="/map">Map</Link>
+            </MenuItem>
           </NavDropdown>
+          <NavItem eventKey={2} href="#">
+            <Link to="/about">About</Link>
+          </NavItem>
         </Nav>
       </Navbar>
     )

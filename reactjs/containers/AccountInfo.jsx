@@ -1,9 +1,15 @@
 import React from "react";
 import Headline from "../components/Headline"
-import {Button, Col, Grid, Label, Row, Table} from "react-bootstrap";
-
+import {Alert, Button, Col, Grid, Label, Row, Table} from "react-bootstrap";
+import AlertDismissable from "../components/AlertDismissable"
 
 export default class AccountInfo extends React.Component {
+    showWarning = () => (
+        <Alert bsStyle="warning">
+            <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+        </Alert>
+    )
+
     render() {
       return (
         <div>
@@ -39,7 +45,7 @@ export default class AccountInfo extends React.Component {
             <Grid>
                 <Row>
                     <Col xs={6} md={2}>
-                        <Button bsStyle="danger" bsSize="large">Delete Account</Button>
+                        <Button bsStyle="danger" bsSize="large" onClick={this.showWarning}>Delete Account</Button>
                     </Col>
                     <Col xs={6} md={2}>
                         <Button bsStyle="warning" bsSize="large">Change Password</Button>

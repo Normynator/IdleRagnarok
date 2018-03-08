@@ -9,8 +9,11 @@ import Home from "./Home"
 import About from "./About"
 import Chars from "./Chars"
 import Mission from "./Mission"
+import MissionList from "./MissionList"
+import Map from "./Map"
+import DungeonList from "./DungeonList"
 
-import { Route } from "react-router-dom";
+import { Route } from "react-router-dom"
 
 @connect(state => ({
   router: state.router,
@@ -26,11 +29,14 @@ export default class App1Container extends React.Component {
           <div className="col-sm-12">
             <NavBar/>
             
-            <Route exact path="/" component={Home} />               
-            <Route path="/acc_info" component={AccountInfo} />
-            <Route path="/about" component={About} />
-            <Route path="/chars" component={Chars} />
-            <Route path="/mission" component={Mission} />
+            <Route exact path="/"           component={Home} />
+            <Route path="/acc_info"         component={AccountInfo} />
+            <Route path="/about"            component={About} />
+            <Route path="/chars"            component={Chars} />
+            <Route path="/mission"          component={Mission} />
+            <Route path="/mission_list"     component={MissionList} />
+            <Route path="/map"              component={Map} />
+            <Route path="/dungeon/:dungeonName" component={DungeonList}/>
 
             <p>{process.env.BASE_API_URL}</p>
           </div>
