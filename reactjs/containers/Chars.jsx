@@ -17,20 +17,30 @@ export default class AccountInfo extends React.Component {
         let {dispatch, apiCharSelect} = this.props
         if (!apiCharSelect.isLoadingRequest && apiCharSelect.result === undefined) {
             dispatch(apiCharActions.fetchCharsApi())
+        } else {
+            this.generate_content(this.props.apiCharSelect.result)
         }
     }
+
+    componentDidUpdate() {
+        if (this.props.apiCharSelect.result !== undefined && !this.state.callbackExecuted) {
+            this.generate_content(this.props.apiCharSelect.result)
+        }
+    }
+
+
 
     constructor(props) {
         super(props);
         // API CALL START
         let json_placeholder = "{\n  \"150001\": {\n    \"char\": {\n      \"name\": \"Angel of Darkness\",\n      \"class\": \"Lord Knight\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite.png\"\n  },\n  \"150002\": {\n    \"char\": {\n      \"name\": \"Angel\",\n      \"class\": \"Creator\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite2.png\"\n  },\n  \"150003\": {\n    \"char\": {\n      \"name\": \"Darkness\",\n      \"class\": \"Hunter\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite3.png\"\n  },\n  \"150004\": {\n    \"char\": {\n      \"name\": \"Himmelsfaust\",\n      \"class\": \"Professor\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite3.png\"\n  },\n  \"150005\": {\n    \"char\": {\n      \"name\": \"Evelynn\",\n      \"class\": \"Monk\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite2.png\"\n  },\n  \"150006\": {\n    \"char\": {\n      \"name\": \"Normynator\",\n      \"class\": \"Lord Knight\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite.png\"\n  },\n  \"150007\": {\n    \"char\": {\n      \"name\": \"Normy\",\n      \"class\": \"Whitesmith\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite2.png\"\n  },\n  \"150008\": {\n    \"char\": {\n      \"name\": \"Angell\",\n      \"class\": \"High Priest\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite3.png\"\n  },\n  \"150009\": {\n    \"char\": {\n      \"name\": \"Shyrena\",\n      \"class\": \"Wizard\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite.png\"\n  }\n}";
         // API CALL END
-
+        console.log("call constructor")
         this.state = {
             page: 1,
-            chars: null,
+            chars: undefined,
             size: 0,
-            parsingDone: false
+            callbackExecuted: false
         };
     }
 
@@ -42,9 +52,8 @@ export default class AccountInfo extends React.Component {
         this.setState( () => ({
             chars: chars,
             size: size,
-            parsingDone: true
+            callbackExecuted: true
         }));
-        console.log(chars[0].name)
     }
 
     toggleNextPage() {
@@ -79,23 +88,14 @@ export default class AccountInfo extends React.Component {
         return pID
     }
 
-    callback_func(apiCharSelect) {
-        const api_ret = apiCharSelect.result
-        // if result === undefinded -> error
-        console.log("callback_func")
-        console.log(api_ret)
-        if (!this.state.parsingDone) {
-            this.generate_content(api_ret)
-        }
-
-    }
-
     render() {
         let {apiCharSelect} = this.props;
         if (apiCharSelect.isLoadingRequest || apiCharSelect.result === undefined) {
             return (<RenderLoading/>)
         }
-        this.callback_func(apiCharSelect);
+        if(this.state.chars === undefined) {
+            return (<RenderLoading/>)
+        }
         return (
             <div>
                 <Grid>

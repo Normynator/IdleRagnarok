@@ -19,23 +19,23 @@ export default class CharTable extends React.Component {
                     </tr>
                     <tr>
                         <td>Base Level</td>
-                        <td>{cobj.blvl}</td>
+                        <td>{cobj.base_level}</td>
                     </tr>
                     <tr>
                         <td>Job Level</td>
-                        <td>{cobj.jlvl}</td>
+                        <td>{cobj.job_level}</td>
                     </tr>
                     <tr>
                         <td>Guild</td>
-                        <td>{cobj.guild}</td>
+                        <td>{cobj.guild_id}</td>
                     </tr>
                     <tr>
                         <td>Base Exp</td>
-                        <td>{cobj.bexp}</td>
+                        <td>{cobj.base_exp}</td>
                     </tr>
                     <tr>
                         <td>Job Exp</td>
-                        <td>{cobj.jexp}</td>
+                        <td>{cobj.job_exp}</td>
                     </tr>
                 </tbody>
             </Table>
