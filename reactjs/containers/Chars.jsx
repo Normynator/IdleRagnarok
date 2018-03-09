@@ -7,10 +7,9 @@ import RenderLoading from "../components/RenderLoading";
 import {connect} from "react-redux";
 
 @connect(state => ({
-  apiCharSelect: state.apiCharSelect,
+    apiCharSelect: state.apiCharSelect,
 }))
 
-// pID starts with 1
 export default class AccountInfo extends React.Component {
 
     componentDidMount() {
@@ -29,13 +28,9 @@ export default class AccountInfo extends React.Component {
     }
 
 
-
     constructor(props) {
         super(props);
-        // API CALL START
-        let json_placeholder = "{\n  \"150001\": {\n    \"char\": {\n      \"name\": \"Angel of Darkness\",\n      \"class\": \"Lord Knight\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite.png\"\n  },\n  \"150002\": {\n    \"char\": {\n      \"name\": \"Angel\",\n      \"class\": \"Creator\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite2.png\"\n  },\n  \"150003\": {\n    \"char\": {\n      \"name\": \"Darkness\",\n      \"class\": \"Hunter\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite3.png\"\n  },\n  \"150004\": {\n    \"char\": {\n      \"name\": \"Himmelsfaust\",\n      \"class\": \"Professor\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite3.png\"\n  },\n  \"150005\": {\n    \"char\": {\n      \"name\": \"Evelynn\",\n      \"class\": \"Monk\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite2.png\"\n  },\n  \"150006\": {\n    \"char\": {\n      \"name\": \"Normynator\",\n      \"class\": \"Lord Knight\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite.png\"\n  },\n  \"150007\": {\n    \"char\": {\n      \"name\": \"Normy\",\n      \"class\": \"Whitesmith\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite2.png\"\n  },\n  \"150008\": {\n    \"char\": {\n      \"name\": \"Angell\",\n      \"class\": \"High Priest\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite3.png\"\n  },\n  \"150009\": {\n    \"char\": {\n      \"name\": \"Shyrena\",\n      \"class\": \"Wizard\",\n      \"blvl\": \"99\",\n      \"jlvl\": \"50\",\n      \"guild\": \"Gruppe 8\",\n      \"bexp\": \"1234\",\n      \"jexp\": \"4321\"\n    },\n    \"stats\":{\n      \"str\": \"99\",\n      \"agi\": \"99\",\n      \"vit\": \"99\",\n      \"int\": \"99\",\n      \"dex\": \"99\",\n      \"luk\": \"99\"\n    },\n    \"img\": \"test_sprite.png\"\n  }\n}";
-        // API CALL END
-        console.log("call constructor")
+
         this.state = {
             page: 1,
             chars: undefined,
@@ -46,10 +41,9 @@ export default class AccountInfo extends React.Component {
 
     generate_content(api_ret) {
         // TODO: Crash, wenn Chars.length nicht durch 3 teilbar ist
-        //let api_ret_json = JSON.parse(api_ret)
         let chars = api_ret;
         let size = chars.length / 3;
-        this.setState( () => ({
+        this.setState(() => ({
             chars: chars,
             size: size,
             callbackExecuted: true
@@ -93,7 +87,7 @@ export default class AccountInfo extends React.Component {
         if (apiCharSelect.isLoadingRequest || apiCharSelect.result === undefined) {
             return (<RenderLoading/>)
         }
-        if(this.state.chars === undefined) {
+        if (this.state.chars === undefined) {
             return (<RenderLoading/>)
         }
         return (
