@@ -2,6 +2,7 @@ import React from "react";
 import Headline from "../components/Headline"
 import * as apitestActions from "../actions/apitestActions"
 import ApiTestComp from "../components/ApiTestComp"
+import RenderLoading from "../components/RenderLoading"
 import {connect} from "react-redux";
 
 @connect(state => ({
@@ -17,22 +18,10 @@ export default class ApiTest extends React.Component {
         }
     }
 
-    renderLoading() {
-      return (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              Loading...
-            </div>
-          </div>
-        </div>
-      )
-    }
-
     render() {
       let {apiTest} = this.props
       if (apiTest.isLoadingRequest || apiTest.result === undefined) {
-        return this.renderLoading()
+        return ( <RenderLoading/> )
       }
       return (
         <div className="container">

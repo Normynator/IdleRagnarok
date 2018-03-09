@@ -7,7 +7,6 @@ import {Col, Grid, Image, Row} from "react-bootstrap";
 export default class AccountInfo extends React.Component {
     render() {
         let obj = this.props.list_obj
-        console.log(obj[0].char)
         return(
           <Grid>
                 <Row>

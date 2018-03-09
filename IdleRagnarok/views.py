@@ -21,5 +21,5 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class CharsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Chars.objects.all()
+    queryset = Chars.objects.filter(account_id=2000002)
     serializer_class = CharsSerializer

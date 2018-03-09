@@ -40,9 +40,9 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
             'hotkey_rowshift')
 
 
-CharsSerializer._declared_fields["class"] = serializers.CharField(
+CharsSerializer._declared_fields["class"] = serializers.IntegerField(
     source="class_name")
-CharsSerializer._declared_fields["str"] = serializers.CharField(
+CharsSerializer._declared_fields["str"] = serializers.IntegerField(
     source="str_stat")
-CharsSerializer._declared_fields["int"] = serializers.CharField(
+CharsSerializer._declared_fields["int"] = serializers.IntegerField(
     source="int_stat")
