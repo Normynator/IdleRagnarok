@@ -1,18 +1,26 @@
 import React from "react";
 import Headline from "../components/Headline"
-import {Alert, Button, Col, Grid, Label, Row, Table} from "react-bootstrap";
-import AlertDismissable from "../components/AlertDismissable"
+import { Button, Col, Grid, Label, Row, Table} from "react-bootstrap";
+import DeleteAccWarning from "../components/DeleteAccWarning"
+import {connect} from "react-redux";
+import * as warningActions from "../actions/warningActions";
+
+@connect(state => ({
+    counters: state.counters,
+}))
 
 export default class AccountInfo extends React.Component {
-    showWarning = () => (
-        <Alert bsStyle="warning">
-            <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
-        </Alert>
-    )
+
+    handleClick() {
+        let {dispatch} = this.props;
+        console.log(this.props);
+        dispatch(warningActions.changeDeleteWarning())
+    }
 
     render() {
       return (
         <div>
+            <DeleteAccWarning/>
             <Headline>Account Info</Headline>
             <hr/>
             <h4>
@@ -45,7 +53,7 @@ export default class AccountInfo extends React.Component {
             <Grid>
                 <Row>
                     <Col xs={6} md={2}>
-                        <Button bsStyle="danger" bsSize="large" onClick={this.showWarning}>Delete Account</Button>
+                        <Button bsStyle="danger" bsSize="large" onClick={() => this.handleClick()}>Delete Account</Button>
                     </Col>
                     <Col xs={6} md={2}>
                         <Button bsStyle="warning" bsSize="large">Change Password</Button>

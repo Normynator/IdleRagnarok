@@ -7,34 +7,35 @@ import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect'
 
 export default class CharTable extends React.Component {
     render() {
+        let cobj = this.props.char_obj
       return (
         <div>
-            <Headline>Angel of Darkness</Headline>
+            <Headline>{cobj.name}</Headline>
             <Table striped bordered condensed hover>
                 <tbody>
                     <tr>
                         <td>Class</td>
-                        <td>Wizard</td>
+                        <td>{cobj.class}</td>
                     </tr>
                     <tr>
                         <td>Base Level</td>
-                        <td>96</td>
+                        <td>{cobj.blvl}</td>
                     </tr>
                     <tr>
                         <td>Job Level</td>
-                        <td>50</td>
+                        <td>{cobj.jlvl}</td>
                     </tr>
                     <tr>
                         <td>Guild</td>
-                        <td>Gruppe 8</td>
+                        <td>{cobj.guild}</td>
                     </tr>
                     <tr>
                         <td>Base Exp</td>
-                        <td>3824293847</td>
+                        <td>{cobj.bexp}</td>
                     </tr>
                     <tr>
                         <td>Job Exp</td>
-                        <td>1231587645</td>
+                        <td>{cobj.jexp}</td>
                     </tr>
                 </tbody>
             </Table>

@@ -1,15 +1,9 @@
 import React from "react";
 import Headline from "../components/Headline"
+import PopoverHoverFocusBottom from "../components/PopoverHoverFocusBottom"
 import {
     Button, Col, Grid, Image, Label, OverlayTrigger, Popover, ProgressBar, Row, Table, Thumbnail,
 } from "react-bootstrap";
-
-
-const popoverHoverFocus = (
-  <Popover id="popover-trigger-hover-focus" title="Popover bottom">
-    <strong>Holy guacamole!</strong> Check this info.
-  </Popover>
-);
 
 export default class Mission extends React.Component {
 
@@ -114,21 +108,11 @@ export default class Mission extends React.Component {
                                     <Image src="/static/images/ws_carttermination.gif" thumbnail />
                                 </Col>
                                 <Col xs={6} md={2}>
-                                    <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
-                                        <Image src="/static/images/742.gif" thumbnail />
-                                    </OverlayTrigger>
-                                    <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
-                                        <Image src="/static/images/1565.gif" thumbnail />
-                                    </OverlayTrigger>
-                                    <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
-                                        <Image src="/static/images/2000.gif" thumbnail />
-                                    </OverlayTrigger>
-                                    <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
-                                        <Image src="/static/images/2423.gif" thumbnail />
-                                    </OverlayTrigger>
-                                    <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
-                                        <Image src="/static/images/card.gif" thumbnail />
-                                    </OverlayTrigger>
+                                    <PopoverHoverFocusBottom src={"/static/images/742.gif"} title={"Title"} msg={"info text."}/>
+                                    <PopoverHoverFocusBottom src={"/static/images/1565.gif"} title={"Title"} msg={"info text."}/>
+                                    <PopoverHoverFocusBottom src={"/static/images/2000.gif"} title={"Title"} msg={"info text."}/>
+                                    <PopoverHoverFocusBottom src={"/static/images/2423.gif"} title={"Title"} msg={"info text."}/>
+                                    <PopoverHoverFocusBottom src={"/static/images/card.gif"} title={"Title"} msg={"info text."}/>
                                 </Col>
                             </Row>
                             <Row>

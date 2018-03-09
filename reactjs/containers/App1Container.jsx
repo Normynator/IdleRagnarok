@@ -12,6 +12,7 @@ import Mission from "./Mission"
 import MissionList from "./MissionList"
 import Map from "./Map"
 import DungeonList from "./DungeonList"
+import ApiTest from "./ApiTest"
 
 import { Route } from "react-router-dom"
 
@@ -29,14 +30,15 @@ export default class App1Container extends React.Component {
           <div className="col-sm-12">
             <NavBar/>
             
-            <Route exact path="/"           component={Home} />
-            <Route path="/acc_info"         component={AccountInfo} />
-            <Route path="/about"            component={About} />
-            <Route path="/chars"            component={Chars} />
-            <Route path="/mission"          component={Mission} />
-            <Route path="/mission_list"     component={MissionList} />
-            <Route path="/map"              component={Map} />
+            <Route exact path="/"               component={Home} />
+            <Route path="/acc_info"             component={AccountInfo} />
+            <Route path="/about"                component={About} />
+            <Route path="/chars"                component={Chars}/>
+            <Route path="/mission"              component={Mission} />
+            <Route path="/mission_list"         component={MissionList} />
+            <Route path="/map"                  component={Map} />
             <Route path="/dungeon/:dungeonName" component={DungeonList}/>
+            <Route path="/api_test"             component={ApiTest}/>
 
             <p>{process.env.BASE_API_URL}</p>
           </div>

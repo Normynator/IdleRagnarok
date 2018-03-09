@@ -25,6 +25,7 @@ export default class Home extends React.Component {
 
     handleClick() {
         let {dispatch} = this.props;
+        console.log(this.props);
         dispatch(counterActions.increaseCounter())
     }
 
