@@ -17,11 +17,25 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.views import generic
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', generic.TemplateView.as_view(template_name='api_test.html')),
-    re_path(r'^', generic.TemplateView.as_view(template_name='view.html')),
-    #path('info/', generic.TemplateView.as_view(template_name='info.html')),
-    #re_path(r'^info/$', generic.TemplateView.as_view(template_name='info.html')),
+from django.conf.urls import url, include
+from rest_framework import routers
+from IdleRagnarok import views
 
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'chars', views.CharsViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+urlpatterns = [
+    url(r'^api/v1/', include(router.urls)),
+    url(r'^admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^', generic.TemplateView.as_view(template_name='view.html')),
+
+    # currently unused
+    #
+    # path('api/v1/', generic.TemplateView.as_view(template_name='api_test.html')),
+    # path('api/v1/', views.UserViewSet),
 ]

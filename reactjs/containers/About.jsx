@@ -12,6 +12,7 @@ export default class About extends React.Component {
                         <Headline>About</Headline>
                         <hr/>
                         <p>Made by Normynator</p>
+
                         <hr/>
                     </Col>
                 </Row>

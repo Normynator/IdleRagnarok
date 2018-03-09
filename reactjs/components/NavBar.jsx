@@ -31,8 +31,11 @@ export default class NavBar extends React.Component {
                 <Link to="/map">Map</Link>
             </MenuItem>
           </NavDropdown>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={4} href="#">
             <Link to="/about">About</Link>
+          </NavItem>
+          <NavItem eventKey={5} href="#">
+            <Link to="/api_test">API Test</Link>
           </NavItem>
         </Nav>
       </Navbar>
