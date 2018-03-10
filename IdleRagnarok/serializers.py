@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-
+from IdleRagnarok.server_functions.file_interpreter import DBConnector
 from IdleRagnarok.model import Chars
+
+CONST_DB = DBConnector()
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -17,10 +19,16 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CharsSerializer(serializers.HyperlinkedModelSerializer):
+
+    class_name = serializers.SerializerMethodField()
+
+    def get_class_name(self, obj):
+        return CONST_DB.id2class(obj.class_id)
+
     class Meta:
         model = Chars
         fields = (
-            'char_id', 'account_id', 'char_num', 'name', 'class', 'base_level',
+            'char_id', 'account_id', 'char_num', 'name', 'class_name', 'base_level',
             'job_level', 'base_exp',
             'job_exp', 'zeny', 'str', 'agi', 'vit', 'int', 'dex', 'luk',
             'max_hp',
@@ -40,8 +48,7 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
             'hotkey_rowshift')
 
 
-CharsSerializer._declared_fields["class"] = serializers.IntegerField(
-    source="class_name")
+# Escape not allowed names in python, to match database
 CharsSerializer._declared_fields["str"] = serializers.IntegerField(
     source="str_stat")
 CharsSerializer._declared_fields["int"] = serializers.IntegerField(

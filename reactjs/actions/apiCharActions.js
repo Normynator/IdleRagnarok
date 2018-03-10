@@ -7,8 +7,8 @@ export const FETCH_API_CHARS_ERROR500 = "FETCH_API_CHARS_ERROR500"
 export const FETCH_API_CHARS_FAILURE = "FETCH_API_CHARS_FAILURE"
 export function fetchCharsApi() {
   return function (dispatch) {
-    //let url = "http://192.168.0.100:8000/api/v1/chars/"
-      let url = "http://192.168.0.100:8000/api/v1/chars/?format=json"
+    let url = "http://127.0.0.1:8000/api/v1/chars/"
+     // let url = "http://127.0.0.1:8000/api/v1/chars/"
     dispatch({type: FETCH_API_CHARS})
     return request(
       url, {},
