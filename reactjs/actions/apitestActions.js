@@ -7,7 +7,7 @@ export const FETCH_API_TEST_ERROR500 = "FETCH_API_TEST_ERROR500"
 export const FETCH_API_TEST_FAILURE = "FETCH_API_TEST_FAILURE"
 export function fetchApiTest() {
   return function (dispatch) {
-    let url = process.BASE_API_URL+ "/users/"
+    let url = process.env.BASE_API_URL.concat("users/")
     dispatch({type: FETCH_API_TEST})
     return request(
       url, {},

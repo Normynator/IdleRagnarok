@@ -2,7 +2,7 @@ var path = require("path")
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
 var config = require('./webpack.base.config.js')
-var ip = 'localhost'
+var ip = '127.0.0.1'
 
 
 config.devtool = "#eval-source-map"
@@ -24,7 +24,7 @@ config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('development'),
-      'BASE_API_URL': JSON.stringify('https://'+ ip +':8000/api/v1/'),
+      'BASE_API_URL': JSON.stringify('http://'+ ip +':8000/api/v1/'),
   }}),
 ])
 
