@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User, Group
-from IdleRagnarok.model import Chars
 from rest_framework import viewsets
-from IdleRagnarok.serializers import UserSerializer, GroupSerializer, CharsSerializer
+
+from IdleRagnarok.model import Chars, Guilds
+from IdleRagnarok.serializers import UserSerializer, GroupSerializer, \
+    CharsSerializer, GuildsSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,3 +25,8 @@ class GroupViewSet(viewsets.ModelViewSet):
 class CharsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Chars.objects.filter(account_id=2000002)
     serializer_class = CharsSerializer
+
+
+class GuildsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Guilds.objects.all()
+    serializer_class = GuildsSerializer

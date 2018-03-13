@@ -26,7 +26,7 @@ export default class CharTable extends React.Component {
                     </tr>
                     <tr>
                         <td>Guild</td>
-                        <td>{cobj.guild_id}</td>
+                        <td>{cobj.guild_name}</td>
                     </tr>
                     <tr>
                         <td>Base Exp</td>

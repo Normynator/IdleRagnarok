@@ -1,6 +1,31 @@
 from django.db import models
 
 
+class Guilds(models.Model):
+    guild_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=20)
+    char_id = models.IntegerField()
+    master = models.CharField(max_length=20)
+    guild_lv = models.IntegerField()
+    connect_member = models.IntegerField()
+    max_member = models.IntegerField()
+    average_lv = models.IntegerField()
+    exp = models.IntegerField()
+    next_exp = models.IntegerField()
+    skill_point = models.IntegerField()
+    mes1 = models.CharField(max_length=100)
+    mes2 = models.CharField(max_length=100)
+    emblem_len = models.IntegerField()
+    emblem_id = models.IntegerField()
+     # emblem_data, dont know datatype
+
+    class Meta:
+        app_label = 'IdleRagnarok'
+        db_table = 'guild'
+
+    def __unicode__(self):
+        return self.name
+
 
 class Chars(models.Model):
     char_id = models.IntegerField(primary_key=True)
@@ -65,6 +90,7 @@ class Chars(models.Model):
     sex = models.CharField(max_length=1)
     hotkey_rowshift = models.IntegerField()
     class_name = 'None'
+    guild_name = 'None'
 
     class Meta:
         app_label = 'IdleRagnarok'
