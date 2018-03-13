@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-(0y921g4$@d-3g&t&1p77*(ye^e0)j9g^9n@2h7(+yy_j9!io'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['85.214.226.79']
 
 
 # Application definition
@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/local/',  # end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-local.json'),
+        'BUNDLE_DIR_NAME': 'bundles/stage/',  # end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-stage.json'),
     }
 }
