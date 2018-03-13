@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^api/v1/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-test/', generic.TemplateView.as_view(template_name='api_test.html')),
     url(r'^', generic.TemplateView.as_view(template_name='view.html')),
 
     # currently unused
