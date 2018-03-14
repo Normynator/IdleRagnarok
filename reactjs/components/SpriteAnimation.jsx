@@ -24,9 +24,9 @@ export default class SpriteAnimation extends React.Component {
                 <SpriteAnimator
                     width={100}
                     height={120}
-                    sprite={obj.animation}
+                    sprite={obj.animation[0]}
                     shouldAnimate={true}
-                    fps={8}
+                    fps={obj.animation[1]}
                     startFrame={0}
                     stopLastFrame={false}
                 />

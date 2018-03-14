@@ -2,7 +2,7 @@ import React from "react";
 import SpriteAnimation from "../components/SpriteAnimation"
 import CharTable from "../components/CharTable"
 import CharStatTable from "../components/CharStatTable"
-import {Col, Grid, Image, Row} from "react-bootstrap";
+import {Col, Grid, Row} from "react-bootstrap";
 
 export default class AccountInfo extends React.Component {
     render() {

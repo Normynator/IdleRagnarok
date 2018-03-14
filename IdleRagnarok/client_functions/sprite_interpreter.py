@@ -50,7 +50,7 @@ def __create_animation(frames):
         img.paste(frame, (100*i, 0), frame)
         i += 1
     img.save(__output_path(output_name))
-    return output_name
+    return output_name, i
 
 
 def __build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr):
@@ -95,7 +95,7 @@ def __render_images(body, head, hg_list, action, direction, frame_nr):
         output_name = 'temp' + str(frame_nr) + '.png'
         img = Image.new('RGBA', (100, 120))
         __processing(img, body, head, hg_list, animation_nr, frame_nr).save(__output_path(output_name))
-        return output_name
+        return output_name, 1
 
 
 def __render_obj(img, render_obj, animation_nr, frame_nr, pos):
