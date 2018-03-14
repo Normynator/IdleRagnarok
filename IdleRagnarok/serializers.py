@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from IdleRagnarok.server_functions.file_interpreter import DBConnector
 from IdleRagnarok.model import Chars, Guilds
+from IdleRagnarok.client_functions import sprite_interpreter as SpriteInterpreter
 
 CONST_DB = DBConnector()
 
@@ -33,7 +34,7 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
 
     guild_name = serializers.SerializerMethodField()
     class_name = serializers.SerializerMethodField()
-
+    animation = serializers.SerializerMethodField()
 
     def get_guild_name(self, obj):
         try:
@@ -43,9 +44,12 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
         except:
             return 'No guild'
 
-
     def get_class_name(self, obj):
         return CONST_DB.id2class(obj.class_id)
+
+    def get_animation(self, obj):
+        return obj.animation + SpriteInterpreter.build_animation('wizard', 'kopf_1', ['Black_Valkyrie_Helm', None, None],
+                'SKILL', 1)  # placeholder
 
     class Meta:
         model = Chars
@@ -67,7 +71,7 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
             'child', 'fame', 'rename',
             'delete_date', 'slotchange', 'char_opt', 'font', 'unban_time',
             'uniqueitem_counter', 'sex',
-            'hotkey_rowshift', 'guild_name')
+            'hotkey_rowshift', 'guild_name', 'animation')
 
 
 # Escape not allowed names in python, to match database

@@ -91,6 +91,7 @@ class Chars(models.Model):
     hotkey_rowshift = models.IntegerField()
     class_name = 'None'
     guild_name = 'None'
+    animation = 'static/images/char/'
 
     class Meta:
         app_label = 'IdleRagnarok'
