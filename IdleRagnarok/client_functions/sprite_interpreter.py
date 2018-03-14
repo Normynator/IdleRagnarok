@@ -111,6 +111,9 @@ def __render_obj(img, render_obj, animation_nr, frame_nr, pos):
             hg_pos_x = 50 - obj_img.size[0] / 2 + obj_subframe.offset_x + ref_x - obj.extra_x
             hg_pos_y = 100 - obj_img.size[1] / 2 + obj_subframe.offset_y + ref_y - obj.extra_y
 
+            if obj_subframe.mirror:
+                obj_img = obj_img.transpose(Image.FLIP_LEFT_RIGHT)
+
             img.paste(obj_img, (int(hg_pos_x), int(hg_pos_y)), obj_img)
 
     return obj.extra_x, obj.extra_y

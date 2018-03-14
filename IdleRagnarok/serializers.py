@@ -49,7 +49,7 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_animation(self, obj):
         sprite_info = SpriteInterpreter.build_animation('wizard', 'kopf_1', ['Black_Valkyrie_Helm', None, None],
-                'WALKING', 1)
+                'WALKING', 7)
 
         return obj.animation + sprite_info[0], sprite_info[1]   # placeholder
 
