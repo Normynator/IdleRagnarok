@@ -49,7 +49,7 @@ class CharsSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_animation(self, obj):
         return obj.animation + SpriteInterpreter.build_animation('wizard', 'kopf_1', ['Black_Valkyrie_Helm', None, None],
-                'SKILL', 1)  # placeholder
+                'WALKING', 1)  # placeholder
 
     class Meta:
         model = Chars

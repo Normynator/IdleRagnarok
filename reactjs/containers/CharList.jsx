@@ -1,8 +1,8 @@
 import React from "react";
+import SpriteAnimation from "../components/SpriteAnimation"
 import CharTable from "../components/CharTable"
 import CharStatTable from "../components/CharStatTable"
 import {Col, Grid, Image, Row} from "react-bootstrap";
-
 
 export default class AccountInfo extends React.Component {
     render() {
@@ -14,7 +14,7 @@ export default class AccountInfo extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6} md={2}>
-                                    <Image src={"/static/images/test_sprite.png"} thumbnail />
+                                    <SpriteAnimation obj={obj[0]}/>
                                 </Col>
                                 <Col xs={6} md={2}>
                                     <CharStatTable stats_obj={obj[0]}/>
@@ -31,7 +31,7 @@ export default class AccountInfo extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6} md={2}>
-                                    <Image src={"/static/images/test_sprite2.png"} thumbnail />
+                                    <SpriteAnimation obj={obj[1]}/>
                                 </Col>
                                 <Col xs={6} md={2}>
                                     <CharStatTable stats_obj={obj[1]}/>
@@ -48,7 +48,7 @@ export default class AccountInfo extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6} md={2}>
-                                    <Image src={"/static/images/test_sprite3.png"} thumbnail />
+                                    <SpriteAnimation obj={obj[2]}/>
                                 </Col>
                                 <Col xs={6} md={2}>
                                     <CharStatTable stats_obj={obj[2]}/>
