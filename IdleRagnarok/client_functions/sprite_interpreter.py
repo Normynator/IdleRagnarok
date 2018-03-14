@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import hashlib
 from IdleRagnarok.client_functions.actr import actr
 from IdleRagnarok.client_functions.sprr import sprr
 from IdleRagnarok.client_functions.actr.act import Act
@@ -19,6 +20,8 @@ __ACTIONS = {'IDLE': 0,
              'ATTACK3': 11,
              'SKILL': 12
             }
+__ENABLE_CACHE = True
+__CACHE__ = []
 
 
 class DataObj(object):
@@ -28,18 +31,45 @@ class DataObj(object):
     action = Act()      # Action
 
 
+class CacheObj(object):
+    def __init__(self, body_filename, head_filename, hg_filename_list, action, direction, animation):
+        self.hash = hashlib.md5((body_filename+head_filename+''.join(filter(None, hg_filename_list))+action+str(direction)+str(animation)).encode('utf-8'))
+
+    def __eq__(self, other):
+        return self.hash.hexdigest() == other.hash.hexdigest()
+
+
 def __output_path(filename):
     module_dir = os.path.dirname(__file__)  # get current directory
     return os.path.join(module_dir, OUTPUT_PATH + filename)
 
 
 def build_animation(body_filename, head_filename, hg_filename_list, action, direction):
-    # -1 => all frames
-    return __build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr=-1)
+    return __prepare_build(body_filename, head_filename, hg_filename_list, action,
+                    direction, frame_nr=-1)
 
 
 def build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr=0):
-    return __build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr)
+    return __prepare_build(body_filename, head_filename, hg_filename_list, action,
+                    direction, frame_nr)
+
+
+def __prepare_build(body_filename, head_filename, hg_filename_list, action, direction, frame_nr):
+    if __ENABLE_CACHE:
+        cacheobj = CacheObj(body_filename, head_filename, hg_filename_list, action,
+                            direction, animation=False if frame_nr > -1 else True)
+        for cache in __CACHE__:
+            if cache == cacheobj:
+                return cache.ret_val
+        cacheobj.ret_val = __build_image(body_filename, head_filename,
+                                     hg_filename_list, action, direction,
+                                     frame_nr)
+        __CACHE__.append(cacheobj)
+        return cacheobj.ret_val
+    else:
+        return __build_image(body_filename, head_filename,
+                                     hg_filename_list, action, direction,
+                                     frame_nr)
 
 
 def __create_animation(frames):
