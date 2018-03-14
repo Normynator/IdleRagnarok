@@ -7,7 +7,6 @@ import {Col, Grid, Image, Row} from "react-bootstrap";
 export default class AccountInfo extends React.Component {
     render() {
         let obj = this.props.list_obj
-        console.log(obj[0].char)
         return(
           <Grid>
                 <Row>
@@ -15,15 +14,15 @@ export default class AccountInfo extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6} md={2}>
-                                    <Image src={"/static/images/"+obj[0].img} thumbnail />
+                                    <Image src={"/static/images/test_sprite.png"} thumbnail />
                                 </Col>
                                 <Col xs={6} md={2}>
-                                    <CharStatTable stats_obj={obj[0].stats}/>
+                                    <CharStatTable stats_obj={obj[0]}/>
                                 </Col>
                             </Row>
                             <Row>
                                  <Col md={4}>
-                                    <CharTable char_obj={obj[0].char}/>
+                                    <CharTable char_obj={obj[0]}/>
                                 </Col>
                             </Row>
                         </Grid>
@@ -32,15 +31,15 @@ export default class AccountInfo extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6} md={2}>
-                                    <Image src={"/static/images/"+obj[1].img} thumbnail />
+                                    <Image src={"/static/images/test_sprite2.png"} thumbnail />
                                 </Col>
                                 <Col xs={6} md={2}>
-                                    <CharStatTable stats_obj={obj[1].stats}/>
+                                    <CharStatTable stats_obj={obj[1]}/>
                                 </Col>
                             </Row>
                             <Row>
                                  <Col md={4}>
-                                    <CharTable char_obj={obj[1].char}/>
+                                    <CharTable char_obj={obj[1]}/>
                                 </Col>
                             </Row>
                         </Grid>
@@ -49,15 +48,15 @@ export default class AccountInfo extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6} md={2}>
-                                    <Image src={"/static/images/"+obj[2].img} thumbnail />
+                                    <Image src={"/static/images/test_sprite3.png"} thumbnail />
                                 </Col>
                                 <Col xs={6} md={2}>
-                                    <CharStatTable stats_obj={obj[2].stats}/>
+                                    <CharStatTable stats_obj={obj[2]}/>
                                 </Col>
                             </Row>
                             <Row>
                                  <Col md={4}>
-                                    <CharTable char_obj={obj[2].char}/>
+                                    <CharTable char_obj={obj[2]}/>
                                 </Col>
                             </Row>
                         </Grid>
