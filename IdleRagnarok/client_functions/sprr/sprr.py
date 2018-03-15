@@ -2,9 +2,10 @@
 #   https://github.com/Delfioh/SPRiggan
 #   http://mist.in/gratia/ro/spr/SprFileFormat.html
 
-import struct
-from PIL import Image
 import os
+import struct
+
+from PIL import Image
 
 
 def trans(b):
@@ -62,7 +63,7 @@ def parse_frame_data513(data):
     return ret_data
 
 
-def render_spr512(data, frame_count):
+def render_spr512(data, frame_count, pal_data):
     a, z = 6, 8
     frame = {}
     frame_width = {}
@@ -94,29 +95,12 @@ def render_spr512(data, frame_count):
         dprint('z:', z)
         dprint('pixels: ', frame[i].__len__())
 
-    z += 1024
-    p = data[a + 2:z]
-    dprint(p)
-    ret = struct.unpack('1024c', p)
-    dprint(ret)
-
-    c = 0
-    palette = dict.fromkeys(['r', 'g', 'b'])
-    palette['r'] = dict()
-    palette['g'] = dict()
-    palette['b'] = dict()
-
-    for i in range(256):
-        palette['r'][i] = ret[c + 0]
-        palette['g'][i] = ret[c + 1]
-        palette['b'][i] = ret[c + 2]
-        c += 4
+    palette = __parse_palette(a, z, data, pal_data)
 
     return frame, palette, frame_width, frame_height
 
 
-def render_spr513(data, frame_count):
-
+def render_spr513(data, frame_count, pal_data):
     a, z = 6, 8
     frame = {}
     frame_width = {}
@@ -150,8 +134,18 @@ def render_spr513(data, frame_count):
         dprint('z:', z)
         dprint('pixels: ', frame[i].__len__())
 
-    z += 1024
-    p = data[a + 2:z]
+    palette = __parse_palette(a, z, data, pal_data)
+
+    return frame, palette, frame_width, frame_height
+
+
+def __parse_palette(a, z, data, pal_data):
+    if pal_data is None:
+        z += 1024
+        p = data[a + 2:z]
+    else:
+        p = pal_data
+
     dprint(p)
     ret = struct.unpack('1024c', p)
     dprint(ret)
@@ -168,7 +162,7 @@ def render_spr513(data, frame_count):
         palette['b'][i] = ret[c + 2]
         c += 4
 
-    return frame, palette, frame_width, frame_height
+    return palette
 
 
 def byte2str(input_):
@@ -179,15 +173,23 @@ def byte2int(input_):
     return int.from_bytes(input_, byteorder='little')
 
 
-def render_spr(filename):
+def render_spr(filename, palname=None):
     module_dir = os.path.dirname(__file__)  # get current directory
-    file_path = os.path.join(module_dir, '../../client_files/'+filename)
+    file_path_spr = os.path.join(module_dir, '../../client_files/' + filename)
     try:
-        with open(file_path, 'rb') as f:
+        with open(file_path_spr, 'rb') as f:
             data = f.read()
     except:
-        print(file_path)
-        print(os.path.dirname(os.path.abspath(__file__)))
+        raise LookupError("SPR Data: ", file_path_spr, os.path.dirname(os.path.abspath(__file__)))
+
+    pal_data = None
+    if palname is not None:
+        file_path_pal = os.path.join(module_dir, '../../client_files/' + palname)
+        try:
+            with open(file_path_pal, 'rb') as f:
+                pal_data = f.read()
+        except:
+            raise LookupError("PAL Data:", file_path_pal, os.path.dirname(os.path.abspath(__file__)), palname)
 
     dprint('Data: ' + str(data))
 
@@ -205,10 +207,10 @@ def render_spr(filename):
 
     images = {}
     if spr_version == 513:
-        frame, palette, frame_width, frame_height = render_spr513(data, frame_count)
+        frame, palette, frame_width, frame_height = render_spr513(data, frame_count, pal_data)
 
     if spr_version == 512:
-        frame, palette, frame_width, frame_height = render_spr512(data, frame_count)
+        frame, palette, frame_width, frame_height = render_spr512(data, frame_count, pal_data)
 
     for i in range(frame.__len__()):
         images[i] = image(frame[i], palette, frame_width[i], frame_height[i])
@@ -220,23 +222,23 @@ def main():
     dprint('Starting ...')
     filename = 'kopf_1.spr'
     # filename = 'cursors.spr'
-    #frames, palette, frames_width, frames_height = render_spr(filename)
+    # frames, palette, frames_width, frames_height = render_spr(filename)
     render_spr(filename)[0].show()
 
-    #for i in range(frames.__len__()):
-        #image(frames[i], frames_width[i], frames_height[i], palette)
-    #image(frames[0], frames_width[0], frames_height[0], palette)
-    #dprint(palette['r'])
-    #dprint(palette['g'])
-    #dprint(palette['b'])
-    #s = ""
-    #i = 0
-    #for p in frames[0]:
+    # for i in range(frames.__len__()):
+    # image(frames[i], frames_width[i], frames_height[i], palette)
+    # image(frames[0], frames_width[0], frames_height[0], palette)
+    # dprint(palette['r'])
+    # dprint(palette['g'])
+    # dprint(palette['b'])
+    # s = ""
+    # i = 0
+    # for p in frames[0]:
     #    s += str(frames[0][p]) + ' '
     #    if i % 22 == 0 and i != 0:
     #        s += '\n'
     #    i += 1
-    #dprint(s)
+    # dprint(s)
 
 
 if __name__ == '__main__':

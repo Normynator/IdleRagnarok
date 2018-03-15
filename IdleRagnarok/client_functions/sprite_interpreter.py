@@ -29,6 +29,7 @@ __CACHE__ = []
 class DataObj(object):
     act_filename = ''  # String
     spr_filename = ''  # String
+    pal_filename = None
     sprite = None  # Sprite
     action = Act()  # Action
 
@@ -36,7 +37,7 @@ class DataObj(object):
 class CacheObj(object):
     def __init__(self, body_filename, head_filename, hg_filename_list, action, direction, animation):
         self.hash = hashlib.md5(
-            (body_filename + head_filename + ''.join(filter(None, hg_filename_list)) + action + str(direction)
+            (body_filename[0] + str(body_filename[1]) + head_filename[0] + str(head_filename[1]) + ''.join(filter(None, hg_filename_list)) + action + str(direction)
              + str(animation)).encode('utf-8'))
 
     def __eq__(self, other):
@@ -49,31 +50,26 @@ def __output_path(filename):
 
 
 def build_animation(body_filename, head_filename, hg_filename_list, action, direction):
-    return __prepare_build(body_filename, head_filename, hg_filename_list, action,
-                           direction, frame_nr=-1)
+    return __prepare_build(body_filename, head_filename, hg_filename_list, action, direction, frame_nr=-1)
 
 
 def build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr=0):
-    return __prepare_build(body_filename, head_filename, hg_filename_list, action,
-                           direction, frame_nr)
+    return __prepare_build(body_filename, head_filename, hg_filename_list, action, direction, frame_nr)
 
 
 def __prepare_build(body_filename, head_filename, hg_filename_list, action, direction, frame_nr):
     if __ENABLE_CACHE:
-        cacheobj = CacheObj(body_filename, head_filename, hg_filename_list, action,
-                            direction, animation=False if frame_nr > -1 else True)
+        cacheobj = CacheObj(body_filename, head_filename, hg_filename_list, action, direction,
+                            animation=False if frame_nr > -1 else True)
         for cache in __CACHE__:
             if cache == cacheobj:
+                print('Cache hit ... returning cached value')
                 return cache.ret_val
-        cacheobj.ret_val = __build_image(body_filename, head_filename,
-                                         hg_filename_list, action, direction,
-                                         frame_nr)
+        cacheobj.ret_val = __build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr)
         __CACHE__.append(cacheobj)
         return cacheobj.ret_val
     else:
-        return __build_image(body_filename, head_filename,
-                             hg_filename_list, action, direction,
-                             frame_nr)
+        return __build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr)
 
 
 def __create_animation(frames):
@@ -89,12 +85,20 @@ def __create_animation(frames):
 
 def __build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr):
     body = DataObj()
-    body.act_filename, body.spr_filename = body_filename + '.act', body_filename + '.spr'
-    body.sprite, body.action = sprr.render_spr(body.spr_filename), actr.parse_act(body.act_filename)
+    body.act_filename, body.spr_filename = body_filename[0] + '.act', body_filename[0] + '.spr'
+    if body_filename[1] is not None:
+        # body.pal_filename = body_filename[0] + "_" + str(body_filename[1]) + ".pal"
+        body.pal_filename = str(body_filename[1]) + ".pal"
+    body.sprite = sprr.render_spr(body.spr_filename, body.pal_filename)
+    body.action = actr.parse_act(body.act_filename)
 
     head = DataObj()
-    head.act_filename, head.spr_filename = head_filename + '.act', head_filename + '.spr'
-    head.sprite, head.action = sprr.render_spr(head.spr_filename), actr.parse_act(head.act_filename)
+    head.act_filename, head.spr_filename = head_filename[0] + '.act', head_filename[0] + '.spr'
+    if head_filename[1] is not None:
+        # head.pal_filename = head_filename[0] + "_" + str(head_filename[1]) + ".pal"
+        body.pal_filename = str(head_filename[1]) + ".pal"
+    head.sprite = sprr.render_spr(head.spr_filename, head.pal_filename)
+    head.action = actr.parse_act(head.act_filename)
 
     hg_list = [DataObj(), DataObj(), DataObj()]
 
