@@ -1,9 +1,11 @@
-from PIL import Image
-import os
 import hashlib
+import os
+
+from PIL import Image
+
 from IdleRagnarok.client_functions.actr import actr
-from IdleRagnarok.client_functions.sprr import sprr
 from IdleRagnarok.client_functions.actr.act import Act
+from IdleRagnarok.client_functions.sprr import sprr
 
 OUTPUT_PATH = '../../req_files/static/images/char/'
 __ACTIONS = {'IDLE': 0,
@@ -19,21 +21,23 @@ __ACTIONS = {'IDLE': 0,
              'ATTACK2': 10,
              'ATTACK3': 11,
              'SKILL': 12
-            }
+             }
 __ENABLE_CACHE = True
 __CACHE__ = []
 
 
 class DataObj(object):
-    act_filename = ''   # String
-    spr_filename = ''   # String
-    sprite = None       # Sprite
-    action = Act()      # Action
+    act_filename = ''  # String
+    spr_filename = ''  # String
+    sprite = None  # Sprite
+    action = Act()  # Action
 
 
 class CacheObj(object):
     def __init__(self, body_filename, head_filename, hg_filename_list, action, direction, animation):
-        self.hash = hashlib.md5((body_filename+head_filename+''.join(filter(None, hg_filename_list))+action+str(direction)+str(animation)).encode('utf-8'))
+        self.hash = hashlib.md5(
+            (body_filename + head_filename + ''.join(filter(None, hg_filename_list)) + action + str(direction)
+             + str(animation)).encode('utf-8'))
 
     def __eq__(self, other):
         return self.hash.hexdigest() == other.hash.hexdigest()
@@ -46,12 +50,12 @@ def __output_path(filename):
 
 def build_animation(body_filename, head_filename, hg_filename_list, action, direction):
     return __prepare_build(body_filename, head_filename, hg_filename_list, action,
-                    direction, frame_nr=-1)
+                           direction, frame_nr=-1)
 
 
 def build_image(body_filename, head_filename, hg_filename_list, action, direction, frame_nr=0):
     return __prepare_build(body_filename, head_filename, hg_filename_list, action,
-                    direction, frame_nr)
+                           direction, frame_nr)
 
 
 def __prepare_build(body_filename, head_filename, hg_filename_list, action, direction, frame_nr):
@@ -62,22 +66,22 @@ def __prepare_build(body_filename, head_filename, hg_filename_list, action, dire
             if cache == cacheobj:
                 return cache.ret_val
         cacheobj.ret_val = __build_image(body_filename, head_filename,
-                                     hg_filename_list, action, direction,
-                                     frame_nr)
+                                         hg_filename_list, action, direction,
+                                         frame_nr)
         __CACHE__.append(cacheobj)
         return cacheobj.ret_val
     else:
         return __build_image(body_filename, head_filename,
-                                     hg_filename_list, action, direction,
-                                     frame_nr)
+                             hg_filename_list, action, direction,
+                             frame_nr)
 
 
 def __create_animation(frames):
     output_name = 'animation.png'
-    img = Image.new('RGBA', (100*frames.__len__(), 120))
+    img = Image.new('RGBA', (100 * frames.__len__(), 120))
     i = 0
     for frame in frames:
-        img.paste(frame, (100*i, 0), frame)
+        img.paste(frame, (100 * i, 0), frame)
         i += 1
     img.save(__output_path(output_name))
     return output_name, i
@@ -98,7 +102,8 @@ def __build_image(body_filename, head_filename, hg_filename_list, action, direct
     for hg in hg_filename_list:
         if hg is not None:
             hg_list[i].act_filename, hg_list[i].spr_filename = hg + '.act', hg + '.spr'
-            hg_list[i].sprite, hg_list[i].action = sprr.render_spr(hg_list[i].spr_filename), actr.parse_act(hg_list[i].act_filename)
+            hg_list[i].sprite, hg_list[i].action = sprr.render_spr(hg_list[i].spr_filename), actr.parse_act(
+                hg_list[i].act_filename)
         else:
             hg_list[i] = None
         i += 1
@@ -107,7 +112,6 @@ def __build_image(body_filename, head_filename, hg_filename_list, action, direct
 
 
 def __render_images(body, head, hg_list, action, direction, frame_nr):
-
     if direction > 7:
         raise ValueError('Direction max size is 7')
 
@@ -150,7 +154,6 @@ def __render_obj(img, render_obj, animation_nr, frame_nr, pos):
 
 
 def __processing(img, body, head, hg_list, animation_nr, frame_nr):
-
     # Render BODY
     ref_pos = __render_obj(img, body, animation_nr, frame_nr, None)
 
@@ -168,7 +171,7 @@ def __processing(img, body, head, hg_list, animation_nr, frame_nr):
 def main():
     # build_image('wizard', 'kopf_1', ['Black_Valkyrie_Helm', None, None], 'WALKING', 1)
     build_animation('wizard', 'kopf_1', ['Black_Valkyrie_Helm', None, None],
-                'SKILL', 1)
+                    'SKILL', 1)
 
 
 if __name__ == '__main__':
