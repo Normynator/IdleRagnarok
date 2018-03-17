@@ -37,11 +37,7 @@ def image(frame, palette, w, h):
 
 
 def parse_frame_data512(data):
-    ret_data = {}
-    for j in range(data.__len__()):
-        ret_data[j] = data[j]
-
-    return ret_data
+    return data
 
 
 def parse_frame_data513(data):
