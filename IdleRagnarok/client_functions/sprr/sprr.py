@@ -54,7 +54,6 @@ def parse_frame_data513(data):
                 ret_data[q] = 0x00
                 q += 1
             j += 1
-            ret_data[q] = 0x01
         else:
             ret_data[q] = data[j]
             q += 1
